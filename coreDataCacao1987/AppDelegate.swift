@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CloudCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+//        CloudCore
+        // Register for push notifications about changes
+        application.registerForRemoteNotifications()
+        
+        // Enable CloudCore syncing
+        CloudCore.enable(persistentContainer: persistenceService.persistentContainer)
         return true
+    }
+    
+    // Notification from CloudKit about changes in remote database
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // Check if it CloudKit's and CloudCore notification
+        if CloudCore.isCloudCoreNotification(withUserInfo: userInfo) {
+            // Fetch changed data from iCloud
+            CloudCore.fetchAndSave(using: userInfo, to: persistenceService.persistentContainer, error: nil, completion: { (fetchResult) in
+                completionHandler(fetchResult.uiBackgroundFetchResult)
+            })
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -42,6 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         persistenceService.saveContext()
+        // Save tokens on exit used to differential sync
+        CloudCore.tokens.saveToUserDefaults()
+
     }
 
 
