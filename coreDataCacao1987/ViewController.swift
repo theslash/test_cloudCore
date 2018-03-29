@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
     
@@ -16,7 +17,16 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+//      get data from coredata
+        let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
+        
+        do {
+            let fetchedPeople = try persistenceService.context.fetch(fetchRequest)
+            self.people = fetchedPeople
+            self.tableView.reloadData()
+        } catch {}
+        
     }
 
     @IBAction func onPlusTabbed() {
