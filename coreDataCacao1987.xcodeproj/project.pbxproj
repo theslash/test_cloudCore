@@ -14,6 +14,8 @@
 		5FE3DAA2206CF2DF006ED476 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FE3DAA1206CF2DF006ED476 /* Assets.xcassets */; };
 		5FE3DAA5206CF2DF006ED476 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FE3DAA3206CF2DF006ED476 /* LaunchScreen.storyboard */; };
 		5FE3DAAD206CF506006ED476 /* persistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3DAAC206CF506006ED476 /* persistenceService.swift */; };
+		5FE3DAB0206D02C8006ED476 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3DAAE206D02C8006ED476 /* Person+CoreDataClass.swift */; };
+		5FE3DAB1206D02C8006ED476 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3DAAF206D02C8006ED476 /* Person+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		5FE3DAA4206CF2DF006ED476 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5FE3DAA6206CF2DF006ED476 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FE3DAAC206CF506006ED476 /* persistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = persistenceService.swift; sourceTree = "<group>"; };
+		5FE3DAAE206D02C8006ED476 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5FE3DAAF206D02C8006ED476 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,14 +62,16 @@
 		5FE3DA96206CF2DF006ED476 /* coreDataCacao1987 */ = {
 			isa = PBXGroup;
 			children = (
+				5FE3DAAE206D02C8006ED476 /* Person+CoreDataClass.swift */,
+				5FE3DAAF206D02C8006ED476 /* Person+CoreDataProperties.swift */,
 				5FE3DA97206CF2DF006ED476 /* AppDelegate.swift */,
 				5FE3DA99206CF2DF006ED476 /* ViewController.swift */,
+				5FE3DAAC206CF506006ED476 /* persistenceService.swift */,
 				5FE3DA9B206CF2DF006ED476 /* Main.storyboard */,
 				5FE3DAA1206CF2DF006ED476 /* Assets.xcassets */,
 				5FE3DAA3206CF2DF006ED476 /* LaunchScreen.storyboard */,
 				5FE3DAA6206CF2DF006ED476 /* Info.plist */,
 				5FE3DA9E206CF2DF006ED476 /* coreDataCacao1987.xcdatamodeld */,
-				5FE3DAAC206CF506006ED476 /* persistenceService.swift */,
 			);
 			path = coreDataCacao1987;
 			sourceTree = "<group>";
@@ -144,6 +150,8 @@
 			files = (
 				5FE3DAA0206CF2DF006ED476 /* coreDataCacao1987.xcdatamodeld in Sources */,
 				5FE3DAAD206CF506006ED476 /* persistenceService.swift in Sources */,
+				5FE3DAB1206D02C8006ED476 /* Person+CoreDataProperties.swift in Sources */,
+				5FE3DAB0206D02C8006ED476 /* Person+CoreDataClass.swift in Sources */,
 				5FE3DA9A206CF2DF006ED476 /* ViewController.swift in Sources */,
 				5FE3DA98206CF2DF006ED476 /* AppDelegate.swift in Sources */,
 			);

@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var people = [String]()
+    var people = [Person]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +20,37 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onPlusTabbed() {
+        let alert = UIAlertController(title: "Add Person", message: nil, preferredStyle: .alert)
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Name"
+        }
+        alert.addTextField { (textField) in
+            textField.placeholder = "Age"
+            textField.keyboardType = .numberPad
+        }
+        
+        let action = UIAlertAction(title: "POST", style: .default) { (_) in
+            let name = alert.textFields!.first!.text!
+            let age = alert.textFields!.last!.text!
+//            print(name, age)
+            
+//            fill container
+            let person = Person(context: persistenceService.context)
+            person.name = name
+            person.age = Int16(age)!
+           
+//            save container
+            persistenceService.saveContext()
+            self.people.append(person)
+            
+            self.tableView.reloadData()
+            
+        }
+        
+        alert.addAction(action)
+        
+        present(alert, animated: true, completion: nil)
         
     }
     
@@ -37,8 +68,8 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell (style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = ""
-        cell.detailTextLabel?.text = ""
+        cell.textLabel?.text = people[indexPath.row].name
+        cell.detailTextLabel?.text = String(people[indexPath.row].age)
         
         return cell
     }
