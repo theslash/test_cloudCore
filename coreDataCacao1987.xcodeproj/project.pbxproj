@@ -16,6 +16,7 @@
 		5FE3DAAD206CF506006ED476 /* persistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3DAAC206CF506006ED476 /* persistenceService.swift */; };
 		5FE3DAB0206D02C8006ED476 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3DAAE206D02C8006ED476 /* Person+CoreDataClass.swift */; };
 		5FE3DAB1206D02C8006ED476 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE3DAAF206D02C8006ED476 /* Person+CoreDataProperties.swift */; };
+		D771CCC1607C62D9651640F8 /* Pods_coreDataCacao1987.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB313948A85EB7B89126929 /* Pods_coreDataCacao1987.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,9 @@
 		5FE3DAAC206CF506006ED476 /* persistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = persistenceService.swift; sourceTree = "<group>"; };
 		5FE3DAAE206D02C8006ED476 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5FE3DAAF206D02C8006ED476 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7AD1D505F3C47D5DBD0BC9D8 /* Pods-coreDataCacao1987.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coreDataCacao1987.debug.xcconfig"; path = "Pods/Target Support Files/Pods-coreDataCacao1987/Pods-coreDataCacao1987.debug.xcconfig"; sourceTree = "<group>"; };
+		DCB313948A85EB7B89126929 /* Pods_coreDataCacao1987.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_coreDataCacao1987.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8F36E5E4AF1D2000BB70409 /* Pods-coreDataCacao1987.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coreDataCacao1987.release.xcconfig"; path = "Pods/Target Support Files/Pods-coreDataCacao1987/Pods-coreDataCacao1987.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D771CCC1607C62D9651640F8 /* Pods_coreDataCacao1987.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +53,8 @@
 			children = (
 				5FE3DA96206CF2DF006ED476 /* coreDataCacao1987 */,
 				5FE3DA95206CF2DF006ED476 /* Products */,
+				9AE5624E7DAFF48904021B83 /* Pods */,
+				C96FDCE2744F6FFC995BB4EE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +83,23 @@
 			path = coreDataCacao1987;
 			sourceTree = "<group>";
 		};
+		9AE5624E7DAFF48904021B83 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7AD1D505F3C47D5DBD0BC9D8 /* Pods-coreDataCacao1987.debug.xcconfig */,
+				E8F36E5E4AF1D2000BB70409 /* Pods-coreDataCacao1987.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C96FDCE2744F6FFC995BB4EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DCB313948A85EB7B89126929 /* Pods_coreDataCacao1987.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,9 +107,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FE3DAA9206CF2DF006ED476 /* Build configuration list for PBXNativeTarget "coreDataCacao1987" */;
 			buildPhases = (
+				9A9B6FCDA0ADB7B2E9DBCD0D /* [CP] Check Pods Manifest.lock */,
 				5FE3DA90206CF2DF006ED476 /* Sources */,
 				5FE3DA91206CF2DF006ED476 /* Frameworks */,
 				5FE3DA92206CF2DF006ED476 /* Resources */,
+				0F5D528FA6E2FCE26DDEE5AE /* [CP] Embed Pods Frameworks */,
+				EA2BA7697C9C6DF72BE7CF15 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -142,6 +169,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F5D528FA6E2FCE26DDEE5AE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-coreDataCacao1987/Pods-coreDataCacao1987-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CloudCore/CloudCore.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CloudCore.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-coreDataCacao1987/Pods-coreDataCacao1987-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A9B6FCDA0ADB7B2E9DBCD0D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-coreDataCacao1987-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA2BA7697C9C6DF72BE7CF15 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-coreDataCacao1987/Pods-coreDataCacao1987-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5FE3DA90206CF2DF006ED476 /* Sources */ = {
@@ -288,6 +369,7 @@
 		};
 		5FE3DAAA206CF2DF006ED476 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7AD1D505F3C47D5DBD0BC9D8 /* Pods-coreDataCacao1987.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -303,6 +385,7 @@
 		};
 		5FE3DAAB206CF2DF006ED476 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8F36E5E4AF1D2000BB70409 /* Pods-coreDataCacao1987.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
