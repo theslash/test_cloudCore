@@ -66,7 +66,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loadData(_ sender: Any) {
-        print("Reloading")
+        print("fetchAndSave and Reloading Tableview")
         CloudCore.fetchAndSave(to: persistenceService.persistentContainer, error: { (error) in
             print("FetchAndSave error: \(error)")
             DispatchQueue.main.async {
