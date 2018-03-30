@@ -33,7 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Check if it CloudKit's and CloudCore notification
         if CloudCore.isCloudCoreNotification(withUserInfo: userInfo) {
             // Fetch changed data from iCloud
-            CloudCore.fetchAndSave(using: userInfo, to: persistenceService.persistentContainer, error: nil, completion: { (fetchResult) in
+            print("gotChangeNotification")
+            CloudCore.fetchAndSave(using: userInfo, to: persistenceService.persistentContainer, error: {
+                print("fetchAndSave from didReceiveRemoteNotification error: \($0)")
+            }, completion: { (fetchResult) in
                 completionHandler(fetchResult.uiBackgroundFetchResult)
             })
         }

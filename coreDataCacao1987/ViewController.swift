@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CloudCore
 
 class ViewController: UIViewController {
     
@@ -64,6 +65,35 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func loadData(_ sender: Any) {
+        print("Reloading")
+        CloudCore.fetchAndSave(to: persistenceService.persistentContainer, error: { (error) in
+            print("FetchAndSave error: \(error)")
+            DispatchQueue.main.async {
+                self.getCoreData()
+            }
+        }) {
+            DispatchQueue.main.async {
+                self.getCoreData()
+            }
+        }
+        
+    }
+    
+    @IBAction func reloadTableView(_ sender: Any) {
+        getCoreData()
+    }
+    
+    func getCoreData() {
+        //      get data from coredata
+        let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
+        
+        do {
+            let fetchedPeople = try persistenceService.context.fetch(fetchRequest)
+            self.people = fetchedPeople
+            self.tableView.reloadData()
+        } catch {}
+    }
     
 }
 
