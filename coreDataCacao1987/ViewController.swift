@@ -64,10 +64,13 @@ class ViewController: UIViewController {
         CloudCore.fetchAndSave(to: persistenceService.persistentContainer, error: { (error) in
             print("FetchAndSave error: \(error)")
             DispatchQueue.main.async {
+                persistenceService.context.reset()
                 self.getCoreData()
             }
         }) {
             DispatchQueue.main.async {
+                persistenceService.context.reset()
+
                 self.getCoreData()
             }
         }
@@ -85,7 +88,7 @@ class ViewController: UIViewController {
         do {
             let fetchedPeople = try persistenceService.context.fetch(fetchRequest)
             self.people = fetchedPeople
-            print(self.people)
+//            print(self.people)
             self.tableView.reloadData()
         } catch {}
     }
