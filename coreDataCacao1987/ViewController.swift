@@ -70,7 +70,6 @@ class ViewController: UIViewController {
         }) {
             DispatchQueue.main.async {
                 persistenceService.context.reset()
-
                 self.getCoreData()
             }
         }
@@ -82,13 +81,13 @@ class ViewController: UIViewController {
     }
     
     func getCoreData() {
+        print("getCoreData")
         //      get data from coredata
         let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
         
         do {
             let fetchedPeople = try persistenceService.context.fetch(fetchRequest)
             self.people = fetchedPeople
-//            print(self.people)
             self.tableView.reloadData()
         } catch {}
     }
@@ -110,6 +109,34 @@ extension ViewController: UITableViewDataSource {
         cell.detailTextLabel?.text = String(people[indexPath.row].age)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+       
+        let itemToDelete = people[indexPath.row]
+
+        print(itemToDelete)
+        
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+
+            persistenceService.context.delete(itemToDelete)
+            self.people.remove(at: indexPath.row)
+            
+            do {
+                try persistenceService.context.save()
+            } catch let error as NSError {
+                print("Error While Deleting: \(error.userInfo)")
+            }
+            
+            
+        }
+        getCoreData()
+        
     }
     
 }
