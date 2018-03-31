@@ -19,14 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//      get data from coredata
-        let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
-        
-        do {
-            let fetchedPeople = try persistenceService.context.fetch(fetchRequest)
-            self.people = fetchedPeople
-            self.tableView.reloadData()
-        } catch {}
+        getCoreData()
         
     }
 
@@ -66,6 +59,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loadData(_ sender: Any) {
+        
         print("fetchAndSave and Reloading Tableview")
         CloudCore.fetchAndSave(to: persistenceService.persistentContainer, error: { (error) in
             print("FetchAndSave error: \(error)")
@@ -77,7 +71,7 @@ class ViewController: UIViewController {
                 self.getCoreData()
             }
         }
-        
+ 
     }
     
     @IBAction func reloadTableView(_ sender: Any) {
@@ -91,6 +85,7 @@ class ViewController: UIViewController {
         do {
             let fetchedPeople = try persistenceService.context.fetch(fetchRequest)
             self.people = fetchedPeople
+            print(self.people)
             self.tableView.reloadData()
         } catch {}
     }
