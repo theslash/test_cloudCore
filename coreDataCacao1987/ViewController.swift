@@ -18,6 +18,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
 
         getCoreData()
         
@@ -139,4 +142,15 @@ extension ViewController: UITableViewDataSource {
         
     }
     
+}
+
+// MARK: - Table View Delegate
+extension ViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow
+        let currentCell = tableView.cellForRow(at: indexPath!)!
+        print(currentCell.textLabel!.text!)
+        
+    }
 }
