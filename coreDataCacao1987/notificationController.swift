@@ -14,18 +14,31 @@ class CloudCoreDelegateHandler: CloudCoreDelegate {
     
     func willSyncFromCloud() {
         os_log("🔁 Started fetching from iCloud", log: OSLog.default, type: .debug)
+        DispatchQueue.main.async {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        }
+
     }
     
     func didSyncFromCloud() {
         os_log("✅ Finishing fetching from iCloud", log: OSLog.default, type: .debug)
+        DispatchQueue.main.async {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
     }
     
     func willSyncToCloud() {
         os_log("💾 Started saving to iCloud", log: OSLog.default, type: .debug)
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        }
     }
     
     func didSyncToCloud() {
         os_log("✅ Finished saving to iCloud", log: OSLog.default, type: .debug)
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
     }
     
     func error(error: Error, module: Module?) {
