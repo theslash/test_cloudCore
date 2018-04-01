@@ -38,8 +38,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("gotChangeNotification")
             CloudCore.fetchAndSave(using: userInfo, to: persistenceService.persistentContainer, error: {
                 print("fetchAndSave from didReceiveRemoteNotification error: \($0)")
-            }, completion: { (fetchResult) in
-                completionHandler(fetchResult.uiBackgroundFetchResult)
+            }, completion: {
+                (fetchResult) in completionHandler(fetchResult.uiBackgroundFetchResult)
+                DispatchQueue.main.async {
+                    persistenceService.context.reset()
+                }
             })
         }
     }

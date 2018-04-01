@@ -63,19 +63,7 @@ class ViewController: UIViewController {
     
     @IBAction func loadData(_ sender: Any) {
         
-        print("fetchAndSave and Reloading Tableview")
-        CloudCore.fetchAndSave(to: persistenceService.persistentContainer, error: { (error) in
-            print("FetchAndSave error: \(error)")
-            DispatchQueue.main.async {
-                persistenceService.context.reset()
-                self.getCoreData()
-            }
-        }) {
-            DispatchQueue.main.async {
-                persistenceService.context.reset()
-                self.getCoreData()
-            }
-        }
+        fetchCloudData()
  
     }
     
@@ -93,6 +81,22 @@ class ViewController: UIViewController {
             self.people = fetchedPeople
             self.tableView.reloadData()
         } catch {}
+    }
+    
+    func fetchCloudData() {
+        print("fetchAndSave and Reloading Tableview")
+        CloudCore.fetchAndSave(to: persistenceService.persistentContainer, error: { (error) in
+            print("FetchAndSave error: \(error)")
+            DispatchQueue.main.async {
+                persistenceService.context.reset()
+                self.getCoreData()
+            }
+        }) {
+            DispatchQueue.main.async {
+                persistenceService.context.reset()
+                self.getCoreData()
+            }
+        }
     }
     
 }
