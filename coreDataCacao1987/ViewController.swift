@@ -184,8 +184,8 @@ extension ViewController: UITableViewDelegate {
             } catch {
                 print("Error saving")
             }
-                        
-            //self.tableView.reloadData()
+            
+            self.tableView.reloadData()
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action: UIAlertAction) in
