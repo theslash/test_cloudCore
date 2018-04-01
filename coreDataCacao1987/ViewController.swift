@@ -175,24 +175,17 @@ extension ViewController: UITableViewDelegate {
             let name = alert.textFields!.first!.text!
             let age = alert.textFields!.last!.text!
             
-            let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
             
-            do {
-                let fetchedPeople = try persistenceService.context.fetch(fetchRequest)
-                
-                fetchedPeople[indexPath.row].setValue(name, forKey: "name")
-                fetchedPeople[indexPath.row].setValue(Int16(age), forKey: "age")
-
-                do {
-                    try persistenceService.context.save()
-                } catch let error as NSError {
-                    print("Error While Saving: \(error.userInfo)")
-                }
-                
-            } catch {}
+            selectedItem.setValue(name, forKey: "name")
+            selectedItem.setValue(Int16(age), forKey: "age")
             
-            self.tableView.reloadData()
-//            self.getCoreData()
+            do{
+                try persistenceService.context.save()
+            } catch {
+                print("Error saving")
+            }
+                        
+            //self.tableView.reloadData()
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action: UIAlertAction) in
