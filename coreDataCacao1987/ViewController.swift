@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-
+        
         getCoreData()
         
     }
@@ -98,7 +98,7 @@ class ViewController: UIViewController {
             }
         }
     }
-    
+
 }
 
 extension ViewController: UITableViewDataSource {

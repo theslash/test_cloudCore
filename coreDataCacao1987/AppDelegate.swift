@@ -42,6 +42,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 (fetchResult) in completionHandler(fetchResult.uiBackgroundFetchResult)
                 DispatchQueue.main.async {
                     persistenceService.context.reset()
+                    
+//                    Refresh Core Data in ViewController
+                    if let rootViewController = self.window?.rootViewController as? ViewController {
+                        rootViewController.getCoreData()
+                    }
+                    
                 }
             })
         }
