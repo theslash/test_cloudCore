@@ -37,7 +37,7 @@ class ViewController: UIViewController {
             textField.keyboardType = .numberPad
         }
         
-        let action = UIAlertAction(title: "POST", style: .default) { (_) in
+        let action = UIAlertAction(title: "Save", style: .default) { (_) in
             let name = alert.textFields!.first!.text!
             let age = alert.textFields!.last!.text!
 //            print(name, age)
@@ -55,7 +55,11 @@ class ViewController: UIViewController {
             
         }
         
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action: UIAlertAction) in
+        }
+        
         alert.addAction(action)
+        alert.addAction(cancel)
         
         present(alert, animated: true, completion: nil)
         
@@ -152,9 +156,52 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let indexPath = tableView.indexPathForSelectedRow
-        let currentCell = tableView.cellForRow(at: indexPath!)!
-        print(currentCell.textLabel!.text!)
+        
+        let selectedItem = people[indexPath.row]
+        print(selectedItem)
+        
+        let alert = UIAlertController(title: "Edit Person", message: nil, preferredStyle: .alert)
+        
+        alert.addTextField { (textField) in
+            textField.text = selectedItem.name
+        }
+        alert.addTextField { (textField) in
+            textField.text = String(selectedItem.age)
+            textField.keyboardType = .numberPad
+        }
+        
+        let action = UIAlertAction(title: "Update", style: .default) { (_) in
+            
+            let name = alert.textFields!.first!.text!
+            let age = alert.textFields!.last!.text!
+            
+            let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
+            
+            do {
+                let fetchedPeople = try persistenceService.context.fetch(fetchRequest)
+                
+                fetchedPeople[indexPath.row].setValue(name, forKey: "name")
+                fetchedPeople[indexPath.row].setValue(Int16(age), forKey: "age")
+
+                do {
+                    try persistenceService.context.save()
+                } catch let error as NSError {
+                    print("Error While Saving: \(error.userInfo)")
+                }
+                
+            } catch {}
+            
+            self.tableView.reloadData()
+//            self.getCoreData()
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action: UIAlertAction) in
+        }
+        
+        alert.addAction(action)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
         
     }
 }
