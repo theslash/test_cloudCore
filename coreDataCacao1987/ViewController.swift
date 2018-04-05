@@ -15,14 +15,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var people = [Person]()
-    var moc:NSManagedObjectContext!
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        moc = persistenceService.context
-        
+                
         tableView.delegate = self
         tableView.dataSource = self
     
@@ -77,7 +73,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func reloadTableView(_ sender: Any) {
-        
         getCoreData()
     }
     
@@ -87,10 +82,9 @@ class ViewController: UIViewController {
         let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "recordID", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
-
-    
+        
         do {
-            self.people = try moc.fetch(fetchRequest)
+            self.people = try persistenceService.context.fetch(fetchRequest)
 //            self.people = fetchedPeople
         } catch {}
         self.tableView.reloadData()
@@ -102,8 +96,8 @@ class ViewController: UIViewController {
         CloudCore.fetchAndSave(to: persistenceService.persistentContainer, error: { (error) in
             print("FetchAndSave error: \(error)")
             DispatchQueue.main.async {
-                persistenceService.context.reset()
-                self.getCoreData()
+//                persistenceService.context.reset()
+//                self.getCoreData()
             }
         }) {
             DispatchQueue.main.async {
