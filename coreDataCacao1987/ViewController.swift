@@ -15,12 +15,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var people = [Person]()
+    var moc:NSManagedObjectContext!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        moc = persistenceService.context
+        
         tableView.delegate = self
         tableView.dataSource = self
+    
         
         getCoreData()
         
@@ -72,6 +77,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func reloadTableView(_ sender: Any) {
+        
         getCoreData()
     }
     
@@ -79,12 +85,16 @@ class ViewController: UIViewController {
         print("getCoreData")
         //      get data from coredata
         let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
-        
+        let sortDescriptor = NSSortDescriptor(key: "recordID", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+
+    
         do {
-            let fetchedPeople = try persistenceService.context.fetch(fetchRequest)
-            self.people = fetchedPeople
-            self.tableView.reloadData()
+            self.people = try moc.fetch(fetchRequest)
+//            self.people = fetchedPeople
         } catch {}
+        self.tableView.reloadData()
+
     }
     
     func fetchCloudData() {

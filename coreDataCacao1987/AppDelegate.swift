@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        CloudCore
         // Register for push notifications about changes
         application.registerForRemoteNotifications()
-        
+
         // Enable CloudCore syncing
         CloudCore.delegate = delegateHandler
         CloudCore.enable(persistentContainer: persistenceService.persistentContainer)
